@@ -4,9 +4,10 @@
 
 #ifndef EX2_PLAYER_H
 #define EX2_PLAYER_H
-
+#include "utilities.h"
 #define MAX_DEFAULT_HP 100
 #define MAX_DEFAULT_FORCE 5
+
 
 class Player {
 public:
@@ -40,7 +41,7 @@ public:
      *      level number
     */
 
-    int getLevel();
+    int getLevel() const;
 
     /*
      * Increases force points based on the number it receives.
@@ -113,8 +114,23 @@ public:
 
     int getAttackStrength();
 
+    /*
+     * Copy C'tor
+     * destructor
+     * operator =
+     * Here we are explicitly telling the compiler to use the default methods
+     */
+
+    Player(const Player&) = default;
+    ~Player() = default;
+    Player& operator=(const Player& player) = default;
+
+    bool operator==(const Player &rhs) const;
+
+    bool operator!=(const Player &rhs) const;
+
 private:
-    int m_level = 1;
+    int m_level;
     const char* m_name;
     int m_hp;
     int m_force;

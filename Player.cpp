@@ -3,13 +3,10 @@
 //
 
 #include "Player.h"
-#include "utilities.h"
 #include <iostream>
 using std::cout;
 using std::endl;
-#define MAX_LEVEL 10;
-
-const char* LINE_DIVIDER  = "------------------------";
+#define MAX_LEVEL 10
 
 Player::Player(const char* name, int maxHp, int maxForce)
 {
@@ -18,6 +15,8 @@ Player::Player(const char* name, int maxHp, int maxForce)
     m_maxForce = maxForce;
     m_hp = maxHp;
     m_force = maxForce;
+    m_coins = 0;
+    m_level =1;
 }
 
 void Player::levelUp(int& level)
@@ -28,7 +27,7 @@ void Player::levelUp(int& level)
     }
 }
 
-int Player::getLevel()
+int Player::getLevel() const
 {
     return m_level;
 }
@@ -80,3 +79,9 @@ int Player::getAttackStrength()
 {
     return (m_level + m_force);
 }
+
+bool Player::operator!=(const Player &rhs) const {
+    return !(rhs == *this);
+}
+
+
